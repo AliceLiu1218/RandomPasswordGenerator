@@ -8,6 +8,9 @@ var num = true;
 var special = true;
 var length = 0;
 
+// generated passwod string (global scope)
+var password = "";
+
 function promptquestion() {
 
   // update global scope variable values
@@ -56,19 +59,51 @@ function promptquestion() {
 }
 
 function generatePassword() {
+  var passwordString = ""
+  var str1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  var str2 = "abcdefghijklmnopqrstuvwxyz"
+  var str3 = "0123456789"
+  var str4 = "~!@#$%^&*`"
+
+  if (lowCase) {
+    passwordString = passwordString.concat(str1);
+  }else {
+    passwordString = passwordString.concat("");
+  }
+
+  if (upCase) {
+    passwordString = passwordString.concat(str2);
+  }else {
+    passwordString = passwordString.concat("");
+  }
   
-  console.log(lowCase);
-  console.log(upCase);
-  console.log(num);
-  console.log(special);
-  console.log(9);
-  //return password;
+  if (num) {
+    passwordString = passwordString.concat(str3);
+  }else {
+    passwordString = passwordString.concat("");
+  }
+
+  if (special) {
+    passwordString = passwordString.concat(str4);
+  }else {
+    passwordString = passwordString.concat("");
+  }
+
+  //randomly generate final version of password
+  
+  for (var i=0; i<length; i++) {
+    var randnum = Math.floor(Math.random()*passwordString.length)
+    var passcon = passwordString.charAt(randnum);
+    password = password.concat(passcon);
+  }
+ 
+  return
 }
 
 // Write password to the #password input
 function writePassword() {
   promptquestion();
-  var password = generatePassword();
+  generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
