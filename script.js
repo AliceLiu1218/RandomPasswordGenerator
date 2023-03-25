@@ -12,7 +12,7 @@ var length = 0;
 var password = "";
 
 function promptquestion() {
-
+  
   // update global scope variable values
   length = prompt("Please enter a length for the Password","Any value from 8 to 128");
   
@@ -64,29 +64,38 @@ function generatePassword() {
   var str2 = "abcdefghijklmnopqrstuvwxyz"
   var str3 = "0123456789"
   var str4 = "~!@#$%^&*`"
+  var count = 0
 
   if (lowCase) {
     passwordString = passwordString.concat(str1);
+    count++;
   }else {
     passwordString = passwordString.concat("");
   }
 
   if (upCase) {
     passwordString = passwordString.concat(str2);
+    count++;
   }else {
     passwordString = passwordString.concat("");
   }
   
   if (num) {
     passwordString = passwordString.concat(str3);
+    count++;
   }else {
     passwordString = passwordString.concat("");
   }
 
   if (special) {
     passwordString = passwordString.concat(str4);
+    count++;
   }else {
     passwordString = passwordString.concat("");
+  }
+
+  if (count == 0) {
+    alert("Must select at least one character type. Please start over");
   }
 
   //randomly generate final version of password
